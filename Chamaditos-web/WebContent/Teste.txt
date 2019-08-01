@@ -1,0 +1,181 @@
+	---------------Select formUsuario de grupo--------------------------------
+	
+	<!-- <select id="txtGrupo" name="txtGrupo"><%
+			//if(resultadoconsultar != null && resultadoconsultar.getEntidades() != null)	//teste de nulidade da lista
+			//{
+			//	for(EntidadeDominio e : resultadoconsultar.getEntidades())				//fazendo a lista
+			//	{
+			//		Grupo g = (Grupo)e;%>
+					<option value="<% out.print(g.getId()); %>">
+			//		<% out.print(g.getNomeGrupo()); %>
+			//		</option>
+			//  <%} 
+			//}%>
+	 </select> -->
+	 
+	 
+	 ---------------------formcriar chamado------------------------------
+	  <td class="danger"><%
+
+			if(c.getDataEncerramento().after(c.getDtEstimada()))
+			{
+				%>
+				
+				out.print(c.getSla().getStatus());
+			}
+			else
+			{
+			%>
+			<td class="success"><%
+			out.print(c.getSla().getStatus());
+			
+
+			else if(data.after(c.getDtEstimada()))
+			{%>
+				<td class="danger"><%
+				out.print(c.getSla().getStatus());
+			}
+			else if(data.after(ConverteDate.somaMinutosDate(-90, c.getDtEstimada())))
+			{%>
+				<td class="warning"><%
+				out.print(c.getSla().getStatus());
+			}
+			else
+			{%>
+				<td class="success"><%
+				out.print(c.getSla().getStatus());
+			}	
+			%>
+
+			</td> 
+	 
+	 
+	 
+	 
+	 select * from tb_chamado where grupoautor = 5 OR grupoatribuido = 5 order by id;
+	 
+	 select * from tb_usuario where email = 'murilo@murilo.com' AND senha = '123';
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 <%
+	  String sla = "";
+	  List<String> meses = new ArrayList<String>();
+	  for(String s1 : a.getMeses().keySet())	//sla
+	  {
+		sla += "'"+ s1 + "', ";
+		for(String s2 : a.getMeses().get(s1).keySet())//meses
+	  	{
+			meses.add("'" + s2 + "', ");
+			for (Map.Entry<String,Integer> pair : a.getMeses().get(s1).entrySet()) 
+			{//valores
+  		    if(meses.contains(pair.getKey()))
+  		    {
+  		    	int i = meses.indexOf(pair.getKey());
+  		    	String teste = meses.get(i);
+  		    	meses.remove(i);
+  		    	teste +=  "'"+ pair.getValue() + "', ";
+  		    	meses.add(teste);
+  		    }
+	  		}
+	  	}
+	 }
+	  sla = sla.substring(0, sla.length()-3);
+	  //meses.sort(Comparator.naturalOrder());	    	 
+%>
+    function drawCurveTypes() {
+          var data = google.visualization.arrayToDataTable([
+        	 <% out.print( "['Mes'," + sla); %>],
+        	<%for(String s4 : meses)
+        		{
+        		out.print("[" + s4.substring(0, s4.length()-2) + "]");
+        		}%>
+        	
+        	]);
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	----------------------------------------------teste jsp analise
+        	
+        	
+        	
+        		<div class="container-fluid">
+	<!-- row -->
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3">
+					<!-- Lista de grupo ----------------------------------------------->
+					<label for="txtGrupo" class="control-label">Grupos: </label> 	
+					 <select id="txtGrupo" name="txtGrupo" class="form-control"><%
+							if(grupos != null && grupos != null)	//teste de nulidade da lista
+							{
+								for(EntidadeDominio e : grupos)				//fazendo a lista
+								{
+									Grupo g = (Grupo)e;%>
+									<option value="<% out.print(g.getId()); %>">
+									<% out.print(g.getNomeGrupo()); %>
+									</option>
+							  <%} 
+							}%>
+					 </select>	
+				</div>
+				<div class="col-sm-3">
+				<!-- Lista de Status ----------------------------------------------->	
+					<label for="txtStatus" class="control-label">Status: </label> 	
+					 <select id="txtStatus" name="txtStatus" class="form-control">
+						 <option value="Processando">Processando</option>
+						 <option value="Pendente">Pendente</option>
+						 <option value="Solucionado">Solucionado</option>
+						 <option value="Fechado">Fechado</option>
+					 </select>					
+				</div>
+				<div class="col-sm-2">
+					<!-- Lista de Prazo ----------------------------------------------->
+					<label for="txtPrazo" class="control-label">Prazo: </label> 	
+					 <select id="txtPrazo" name="txtPrazo" class="form-control">
+						 <option value="3">3 meses</option>
+						 <option value="6">6 meses</option>
+						 <option value="12">1 Ano</option>
+					 </select>	
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+	<!-- row -->
+	<!-- row -->
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<button type="submit" id="operacao" name="operacao" value="CONSULTAR" class="btn btn-primary btn-block btn-lg">Analisar</button>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+	<!-- row -->
+	<!-- row -->
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div><div id="chart_div"></div></div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+	<!-- row -->
+	</div>
+	
+	

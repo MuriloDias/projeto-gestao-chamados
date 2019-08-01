@@ -1,0 +1,32 @@
+.data
+{
+  width: calc(100% / 4);
+  padding: 10px;
+  position: relative;
+}
+
+.hidden
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #eee;
+  width: 150px;
+  font-size: 20px;
+  border: 1px solid;
+  z-index: 1;
+  display: none;
+}
+
+.data:hover .hidden
+{
+  display: block;
+}
+
+.col
+{
+  width: calc(100% / 4);
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
